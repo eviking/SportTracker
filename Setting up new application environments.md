@@ -17,7 +17,6 @@ She has the desired configuration working without the HAproxy layers on her lapt
 * At a later phase the QA team is also going to use the environment for stress testing so it will need to include the HAproxy layers.
 * When new code is committed to Github it will be deployed to the QA environment. 
 
-
  3 Environments for Product Management to provide internal demos. 
 
 * The 3 environments need different seed data and application configuration depending on who the audience is for the demo.
@@ -42,14 +41,12 @@ $ docker pull mongo
 $ docker pull redis
 ```
 
-
 ### S2 Starting MongoDB
 
 #### Starting the mongo container
 ```
 $ docker run --name qa-db-1 -d -p 27017:27017 mongo
 ```
-
 
 ##### A quick test to ensure the database is up and running correctly 
 ```
@@ -65,7 +62,6 @@ $ curl `docker inspect  --format '{{ .NetworkSettings.IPAddress }}' qa-db-1`:270
 ```
 It looks like you are trying to access MongoDB over HTTP on the native driver port.
 ```
-
 
 ### S3 Starting Redis
 
