@@ -82,16 +82,16 @@ $ docker exec qa-redis-1  /usr/local/bin/redis-cli info
 
 #####To ensure Redis can be accessed outside of the Redis container Donna "curls" to the port she expects Redis is listening to
 ```
-$ curl \`docker inspect  --format '{{ .NetworkSettings.IPAddress }}' 
- qa-redis-1\`:6379`
+$ curl `docker inspect  --format '{{ .NetworkSettings.IPAddress }}' 
+ qa-redis-1`:6379`
 ```
 
 ######The expected result is not formatted well, but it is clear that the port is responding 
 ```
--ERR wrong number of arguments for 'get' command<BR>
--ERR unknown command 'User-Agent:'<BR>
--ERR unknown command 'Host:'<BR>
--ERR unknown command 'Accept:'<BR>
+-ERR wrong number of arguments for 'get' command
+-ERR unknown command 'User-Agent:'
+-ERR unknown command 'Host:'
+-ERR unknown command 'Accept:'
 ^C
 ```
 
@@ -119,18 +119,18 @@ $ docker exec qa-redis-1  /usr/local/bin/redis-cli info
 
 #####Donna want to make sure she can connect to Redis from inside a container so she runs the following command
 ```
-$ docker run -it redis  /usr/local/bin/redis-cli -h \`docker inspect  --format '{{ .NetworkSettings.IPAddress }}'  qa-redis-1\` info
+$ docker run -it redis  /usr/local/bin/redis-cli -h `docker inspect  --format '{{ .NetworkSettings.IPAddress }}'  qa-redis-1` info
 ```
 
 #####Donna tries the same for Mongo
 ```
-$ docker run -it mongo mongo --host \`docker inspect  --format '{{ .NetworkSettings.IPAddress }}'
- qa-db-1\` --eval "printjson(db.serverStatus())"
+$ docker run -it mongo mongo --host `docker inspect  --format '{{ .NetworkSettings.IPAddress }}'
+ qa-db-1` --eval "printjson(db.serverStatus())"
  ```
 
 #####Before continuing Donna cleans up all the stopped containers
 ```
-$ docker ps -a<BR>
-$ docker rm \`docker ps -a | grep Exited | awk '{print $1}' \`<BR>
+$ docker ps -a
+$ docker rm `docker ps -a | grep Exited | awk '{print $1}' `
 $ docker ps -a
 ```
