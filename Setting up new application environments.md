@@ -58,7 +58,7 @@ $ docker exec qa-db-1 mongo  test --eval "printjson(db.serverStatus())"
 
 ##### To ensure mongo can be accessed outside of the mongo container Donna "curls" to the port she expects mongo is listening to
 ```
-$ curl \`docker inspect  --format '{{ .NetworkSettings.IPAddress }}' qa-db-1\`:27017
+$ curl `docker inspect  --format '{{ .NetworkSettings.IPAddress }}' qa-db-1`:27017
 ```
 
 ######The result she expected looks like this. 
@@ -70,8 +70,9 @@ It looks like you are trying to access MongoDB over HTTP on the native driver po
 ### S3 Starting Redis
 
 ####Starting the Redis container
-<BR>
-```$ docker run --name qa-redis-1 -d redis
+
+```
+$ docker run --name qa-redis-1 -d redis
 ```
 
 ######A quick test to ensure redis is up and running correctly 
